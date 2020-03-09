@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const AddTransaction = () => {
+  const [text, setText] = useState('');
+
   return (
     <div>
       <h3>Add new transaction</h3>
