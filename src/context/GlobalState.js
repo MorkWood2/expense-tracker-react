@@ -23,11 +23,20 @@ export const GlobalProvider = ({ children }) => {
   //use reducer usereducer takes in wherever are reducer is => appreducer file
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
+  //Actions
+  function deleteTransaction(id) {
+    dispatch({
+      type: 'DELETE_TRANSACTION',
+      payload: id
+    });
+  }
+
   //provider component provides state and actions to the components that its wrapped around
   return (
     <GlobalContext.Provider
       value={{
-        transactions: state.transactions
+        transactions: state.transactions,
+        deleteTransaction
       }}
     >
       {children}
