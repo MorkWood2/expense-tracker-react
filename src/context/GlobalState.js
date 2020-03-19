@@ -5,10 +5,10 @@ const initialState = {
   //dummy transactions
   //expense negative number, income positive number
   transactions: [
-    { id: 1, text: 'Flower', amount: -20 },
-    { id: 2, text: 'Salary', amount: 300 },
-    { id: 3, text: 'Book', amount: -10 },
-    { id: 4, text: 'Camera', amount: 150 }
+    // { id: 1, text: 'Flower', amount: -20 },
+    // { id: 2, text: 'Salary', amount: 300 },
+    // { id: 3, text: 'Book', amount: -10 },
+    // { id: 4, text: 'Camera', amount: 150 }
   ]
 };
 
@@ -25,9 +25,19 @@ export const GlobalProvider = ({ children }) => {
 
   //Actions
   function deleteTransaction(id) {
+    //dispatch to our reducer
+    //payload any data we want to send to it
     dispatch({
       type: 'DELETE_TRANSACTION',
       payload: id
+    });
+  }
+
+  function addTransaction(transaction) {
+    dispatch({
+      type: 'ADD_TRANSACTION',
+      //payload is the entire transaction object
+      payload: transaction
     });
   }
 
@@ -36,7 +46,8 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         transactions: state.transactions,
-        deleteTransaction
+        deleteTransaction,
+        addTransaction
       }}
     >
       {children}
